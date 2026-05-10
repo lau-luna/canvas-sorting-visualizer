@@ -1,6 +1,11 @@
 import { state } from './state.js';
 import { loadAlgorithm } from './main.js';
 
+
+
+const params = new URLSearchParams(window.location.search);
+let showSelect = params.get("showSelect") || "true";
+
 export const canvas = document.getElementById("algo");
 export const ctx = canvas.getContext("2d");
 
@@ -146,7 +151,9 @@ export function initVisualizer(sortFn, adjustFn) {
 
   form.appendChild(label);
   form.appendChild(select);
-  document.body.insertBefore(form, sortingDiv);
+  if (showSelect === true) {
+    document.body.insertBefore(form, sortingDiv);
+  }
 
 
   let controlsDiv = document.getElementById("controlsDiv");
