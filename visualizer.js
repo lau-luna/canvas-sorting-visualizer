@@ -4,7 +4,7 @@ import { state } from './state.js';
 export const canvas = document.getElementById("algo");
 export const ctx = canvas.getContext("2d");
 
-canvas.width = canvas.dataset.width || window.innerWidth * 0.95;
+canvas.width = canvas.dataset.width || window.innerWidth;
 canvas.height = canvas.dataset.height || window.innerHeight * 0.812;
 
 state.randomRangeUpperBound = canvas.height - 100;
@@ -121,17 +121,18 @@ export function initVisualizer(sortFn, adjustFn) {
 
   const sortButton = document.createElement("button");
   sortButton.innerText = "SORT";
-  sortButton.style.width = "100px";
+  sortButton.style.width = "85px";
   sortButton.style.height = "50px";
+  sortButton.id = "link"
 
   const newArrayButton = document.createElement("button");
   newArrayButton.innerText = "New random array";
-  newArrayButton.style.width = "100px";
+  newArrayButton.style.width = "120px";
   newArrayButton.style.height = "50px";
 
   const colorButton = document.createElement("button");
   colorButton.innerText = "Decolorize";
-  colorButton.style.width = "75px";
+  colorButton.style.width = "120px";
   colorButton.style.height = "50px";
 
   const sliderDiv = document.createElement("div");
@@ -142,7 +143,7 @@ export function initVisualizer(sortFn, adjustFn) {
   sizeParagraph.style.margin = "0";
 
   const sizeSlider = document.createElement("input");
-  const sliderWidth = canvas.width - 340;
+  const sliderWidth = canvas.width - 350;
   sizeSlider.type = "range";
   sizeSlider.min = 10;
   sizeSlider.max = 2000;

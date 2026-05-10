@@ -1,7 +1,7 @@
 
 const params = new URLSearchParams(window.location.search);
 let algo = params.get("algo");
-let showSelect = params.get("showSelect") | "true";
+let showSelect = params.get("showSelect") || "true";
 
 window.onload = async function() {
 
@@ -24,6 +24,6 @@ window.onload = async function() {
   }
 
   if (showSelect != "true") {
-    document.body.removeChild(select);
+    document.getElementById("form").remove();
   }
 }

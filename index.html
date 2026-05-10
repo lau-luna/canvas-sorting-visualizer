@@ -4,8 +4,88 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SORTING!!</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://counting-stars.neocities.org/css/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://counting-stars.neocities.org/css/styles.css"
+    />
   </head>
   <body>
+    <style>
+      @font-face {
+        font-family: Nunito;
+        src: url("../fonts/CyberpunkWaifus\ \(1\).ttf");
+      }
+
+      @font-face {
+        font-family: Sans;
+        src: url("../fonts/Pokemon\ Classic.ttf");
+        font-weight: bold;
+      }
+
+      @font-face {
+        font-family: Title;
+        src: url("../fonts/Pixel-Life.ttf");
+        font-style: italic;
+      }
+
+      @font-face {
+        font-family: Nunito;
+        src: url("https://sadhost.neocities.org/fonts/Nunito-BoldItalic.ttf");
+        font-style: italic;
+        font-weight: bold;
+      }
+
+      @font-face {
+        font-family: Playfair Display;
+        src: url("https://sadhost.neocities.org/fonts/PlayfairDisplay-Regular.ttf");
+      }
+
+      @font-face {
+        font-family: Pacifico;
+        src: url("https://sadhost.neocities.org/fonts/Pacifico-Regular.ttf");
+      }
+      body {
+        background-image: none;
+      }
+      button {
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 8px var(--shadow-color);
+        color: var(--link-color);
+        font-family: "Sans";
+        font-size: 15px;
+        background-color: var(--background-color);
+        padding-top: 6px;
+        padding-bottom: 6px;
+        transition: letter-spacing 0.3s ease-in-out;
+        font-family: Nunito;
+      }
+
+      button:hover {
+        letter-spacing: 2px;
+        color: var(--hover-color);
+      }
+      input[type="range"] {
+        -webkit-appearance: none;
+        height: 4px;
+        background: var(--hover-color);
+        border-radius: 2px;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--link-color);
+        cursor: move;
+      }
+    </style>
     <form id="form" style="margin-bottom: 2%">
       <label for="algoSelect">Select a sorting algorithm</label>
       <select id="algoSelect">
