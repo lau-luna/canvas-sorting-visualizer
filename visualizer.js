@@ -1,7 +1,11 @@
+import { sort } from './algos/bubble/bubbleSort.js';
 import { state } from './state.js';
 
 export const canvas = document.getElementById("algo");
 export const ctx = canvas.getContext("2d");
+
+canvas.width = canvas.dataset.width || window.innerWidth * 0.95;
+canvas.height = canvas.dataset.height || window.innerHeight * 0.812;
 
 state.randomRangeUpperBound = canvas.height - 100;
 
@@ -107,7 +111,13 @@ export function exchange(A, i, j) {
 
 export function initVisualizer(sortFn, adjustFn) {
   const sortingDiv = document.getElementById("sorting");
-  const controlsDiv = document.createElement("div");
+  
+  let controlsDiv = document.getElementById("controlsDiv");
+  if (controlsDiv != null) {
+    sortingDiv.removeChild(controlsDiv);
+  }
+  controlsDiv = document.createElement("div");
+  controlsDiv.id = "controlsDiv";
 
   const sortButton = document.createElement("button");
   sortButton.innerText = "SORT";
@@ -120,7 +130,7 @@ export function initVisualizer(sortFn, adjustFn) {
   newArrayButton.style.height = "50px";
 
   const colorButton = document.createElement("button");
-  colorButton.innerText = "Colorize";
+  colorButton.innerText = "Decolorize";
   colorButton.style.width = "75px";
   colorButton.style.height = "50px";
 

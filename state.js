@@ -7,7 +7,7 @@ export const state = {
   delay: 1,
   stepsPerFrame: 1,
   arraySize: 50,
-  color: false,
+  color: true,
   sortName: "",
   randomRangeUpperBound: 0,
 }

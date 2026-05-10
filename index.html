@@ -6,10 +6,18 @@
     <title>Document</title>
   </head>
   <body>
+    <form id="form" style="margin-bottom: 2%;">
+      <label for="algoSelect">Select a sorting algorithm</label>
+      <select id="algoSelect">
+        <option value="bubble">Bubble Sort</option>
+        <option value="merge">Merge Sort</option>
+        <option value="quick">Quick Sort</option>
+      </select>
+    </form>
     <div id="sorting">
       
-      <canvas id="algo" width="1200" height=800"></canvas>
+      <canvas id="algo" ></canvas>
     </div>
-    <script type="module" src="./algos/merge/main.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
