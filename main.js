@@ -6,7 +6,7 @@ window.onload = async function() {
 
   async function loadAlgorithm(name) {
     const module = await import(`./algos/${name}/main.js`);
-    console.log(module);
+    // console.log(module);
     module.init();
   }
 
