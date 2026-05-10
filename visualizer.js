@@ -84,22 +84,22 @@ export function drawCheck(A, highlight = []) {
 }
 
 export async function check(A) {
-    state.recentHighlights.clear();
-    const totalDuration = 2000;
-    const stepsPerFrame = Math.max(1, Math.floor(A.length / (totalDuration / 16)));
-    let i = 0;
-    while (i < A.length - 1) {
-        for (let s = 0; s < stepsPerFrame && i < A.length - 1; s++) {
-            state.recentHighlights.add(i);
-            state.recentHighlights.add(i + 1);
-            i++;
-        }
-        drawCheck(A, [...state.recentHighlights]);
-        await sleep(16);
+  state.recentHighlights.clear();
+  const totalDuration = 2000;
+  const stepsPerFrame = Math.max(1, Math.floor(A.length / (totalDuration / 16)));
+  let i = 0;
+  while (i < A.length - 1) {
+    for (let s = 0; s < stepsPerFrame && i < A.length - 1; s++) {
+      state.recentHighlights.add(i);
+      state.recentHighlights.add(i + 1);
+      i++;
     }
+    drawCheck(A, [...state.recentHighlights]);
+    await sleep(16);
+  }
 
-    await sleep(200);
-    state.recentHighlights.clear();
+  await sleep(200);
+  state.recentHighlights.clear();
 }
 
 export function exchange(A, i, j) {
@@ -110,45 +110,72 @@ export function exchange(A, i, j) {
 }
 
 export function initVisualizer(sortFn, adjustFn) {
+  function makeButton(text) {
+    const btn = document.createElement("button");
+    btn.innerText = text;
+    btn.style.padding = "0 15px";
+    btn.style.height = "50px";
+    btn.style.flexShrink = "0";
+    btn.style.whiteSpace = "nowrap";
+    return btn;
+  }
+
   const sortingDiv = document.getElementById("sorting");
-  
+
+  let form = document.getElementById("form");
+  if (form != null) {
+    document.body.removeChild(form);
+  }
+  form = document.createElement("form");
+  form.id = "form";
+  form.style.marginBottom = "2%";
+
+  const label = document.createElement("label");
+  label.innerText = "Select a sorting algorithm";
+  label.htmlFor = "algoSelect";
+
+  const select = document.createElement("select");
+  select.id = "algoSelect";
+
+  [["bubble", "Bubble Sort"], ["merge", "Merge Sort"], ["quick", "Quick Sort"]].forEach(([value, text]) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.innerText = text;
+    select.appendChild(option);
+  });
+
+  form.appendChild(label);
+  form.appendChild(select);
+  document.body.insertBefore(form, sortingDiv);
+
+
   let controlsDiv = document.getElementById("controlsDiv");
+
   if (controlsDiv != null) {
     sortingDiv.removeChild(controlsDiv);
   }
+
   controlsDiv = document.createElement("div");
   controlsDiv.id = "controlsDiv";
 
-  const sortButton = document.createElement("button");
-  sortButton.innerText = "SORT";
-  sortButton.style.width = "85px";
-  sortButton.style.height = "50px";
-  sortButton.id = "link"
-
-  const newArrayButton = document.createElement("button");
-  newArrayButton.innerText = "New random array";
-  newArrayButton.style.width = "120px";
-  newArrayButton.style.height = "50px";
-
-  const colorButton = document.createElement("button");
-  colorButton.innerText = "Decolorize";
-  colorButton.style.width = "120px";
-  colorButton.style.height = "50px";
+  const sortButton = makeButton("SORT");
+  const newArrayButton = makeButton("New Array");
+  const colorButton = makeButton("Decolorize");
 
   const sliderDiv = document.createElement("div");
   sliderDiv.style.display = "block";
+  sliderDiv.style.flex = "1"; // ocupa el espacio restante
 
   const sizeParagraph = document.createElement("p");
   sizeParagraph.innerText = "Array size:";
   sizeParagraph.style.margin = "0";
 
   const sizeSlider = document.createElement("input");
-  const sliderWidth = canvas.width - 350;
   sizeSlider.type = "range";
   sizeSlider.min = 10;
   sizeSlider.max = 2000;
   sizeSlider.value = 600;
-  sizeSlider.style.width = `${sliderWidth}px`;
+  sizeSlider.style.width = "100%"; // ocupa todo el sliderDiv
 
   sliderDiv.appendChild(sizeParagraph);
   sliderDiv.appendChild(sizeSlider);

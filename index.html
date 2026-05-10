@@ -53,42 +53,80 @@
         box-shadow: 0 4px 8px var(--shadow-color);
         color: var(--link-color);
         font-family: "Sans";
-        font-size: 15px;
+        font-size: 10px;
         background-color: var(--background-color);
         padding-top: 6px;
         padding-bottom: 6px;
-        transition: letter-spacing 0.3s ease-in-out;
-        font-family: Nunito;
+        transition:
+          letter-spacing 0.3s ease-in-out,
+          padding 0.3s ease-in-out;
+        font-family: Sans;
       }
 
       button:hover {
         letter-spacing: 2px;
         color: var(--hover-color);
       }
+
+      label {
+        color: var(--text-color);
+        font-family: Sans;
+        font-size: 10px;
+      }
+
+      select {
+        margin-left: 1%;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 8px var(--shadow-color);
+        color: var(--link-color);
+        font-family: Sans;
+        font-size: 10px;
+        background-color: var(--background-color);
+        padding: 6px 15px;
+        transition: letter-spacing 0.3s ease-in-out;
+        cursor: pointer;
+        min-width: 300px;
+      }
+
+      select:hover {
+        letter-spacing: 2px;
+        color: var(--hover-color);
+      }
+      button,
+      select {
+        overflow: visible;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      button:hover,
+      select:hover {
+        cursor: pointer;
+        letter-spacing: 2px;
+      }
+
       input[type="range"] {
         -webkit-appearance: none;
         height: 4px;
         background: var(--hover-color);
         border-radius: 2px;
+        cursor: pointer;
       }
-
+      input[type="range"]::-webkit-slider-runnable-track {
+        height: 4px;
+        cursor: pointer;
+        background: var(--hover-color);
+        border-radius: 2px;
+      }
       input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
         width: 12px;
         height: 12px;
         border-radius: 50%;
         background: var(--link-color);
-        cursor: move;
+        cursor: pointer;
       }
     </style>
-    <form id="form" style="margin-bottom: 2%">
-      <label for="algoSelect">Select a sorting algorithm</label>
-      <select id="algoSelect">
-        <option value="bubble">Bubble Sort</option>
-        <option value="merge">Merge Sort</option>
-        <option value="quick">Quick Sort</option>
-      </select>
-    </form>
     <div id="sorting">
       <canvas id="algo"></canvas>
     </div>
