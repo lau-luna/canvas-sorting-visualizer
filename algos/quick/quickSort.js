@@ -16,10 +16,12 @@ export function adjustDelayAndSteps() {
     state.delay = 15;
   } else if (state.arraySize <= 500) {
     state.delay = 10;
+  } else if (state.arraySize <= 800) {
+    state.delay = 5;
   } else {
     state.delay = 1;
   }
-  state.stepsPerFrame = 1 + Math.floor(state.arraySize / 150);
+  state.stepsPerFrame = 1 + Math.floor(state.arraySize / 200);
 }
 
 export async function sort(A) {

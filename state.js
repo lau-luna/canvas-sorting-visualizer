@@ -1,3 +1,5 @@
+const params = new URLSearchParams(window.location.search);
+
 export const state = {
   comparisons: 0,
   arrayAccesses: 0,
@@ -7,7 +9,7 @@ export const state = {
   delay: 1,
   stepsPerFrame: 1,
   arraySize: 50,
-  color: true,
+  color: params.get("colorize") !== false,
   sortName: "",
   randomRangeUpperBound: 0,
 }
