@@ -2,12 +2,10 @@ import { initVisualizer } from '../../visualizer.js';
 import { state } from '../../state.js';
 import { sort, sortName, adjustDelayAndSteps } from '../../algos/quick/quickSort.js';
 
-state.sortName = sortName;
-
 export function init() {
-    state.sortName = sortName;
-    adjustDelayAndSteps();
-    initVisualizer(sort, adjustDelayAndSteps);
+  state.sortName = sortName;
+  adjustDelayAndSteps();
+  initVisualizer(sort, adjustDelayAndSteps);
 }
 
 window.onload = function() {

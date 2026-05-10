@@ -13,83 +13,49 @@
   <body>
     <style>
       @font-face {
-        font-family: Nunito;
-        src: url("./fonts/CyberpunkWaifus\ \(1\).ttf");
+        font-family: NunitoLocal;
+        src: url("./fonts/CyberpunkWaifus (1).ttf");
       }
-
       @font-face {
-        font-family: Sans;
-        src: url("./fonts/Pokemon\ Classic.ttf");
-        font-weight: bold;
+        font-family: SansLocal;
+        src: url("./fonts/Pokemon Classic.ttf");
       }
-
-      @font-face {
-        font-family: Title;
-        src: url("./fonts/Pixel-Life.ttf");
-        font-style: italic;
-      }
-
       body {
         background-image: none;
+        font-family: NunitoLocal;
       }
-
-      button {
-        border: 1px solid var(--border-color);
-        box-shadow: 0 4px 8px var(--shadow-color);
-        color: var(--link-color);
-        font-family: "Sans";
-        font-size: 10px;
-        background-color: var(--background-color);
-        padding-top: 6px;
-        padding-bottom: 6px;
-        transition:
-          letter-spacing 0.3s ease-in-out,
-          padding 0.3s ease-in-out;
-        font-family: Sans;
-      }
-
-      button:hover {
-        letter-spacing: 2px;
-        color: var(--hover-color);
-      }
-
+      button,
+      select,
       label {
-        color: var(--text-color);
-        font-family: Sans;
+        font-family: SansLocal;
         font-size: 10px;
-      }
-
-      select {
-        margin-left: 1%;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 4px 8px var(--shadow-color);
         color: var(--link-color);
-        font-family: Sans;
-        font-size: 10px;
-        background-color: var(--background-color);
-        padding: 6px 15px;
-        transition: letter-spacing 0.3s ease-in-out;
-        cursor: pointer;
-        min-width: 300px;
-      }
-
-      select:hover {
-        letter-spacing: 2px;
-        color: var(--hover-color);
       }
       button,
       select {
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 8px var(--shadow-color);
+        background-color: var(--background-color);
+        padding: 6px 20px;
         overflow: visible;
-        padding-left: 20px;
-        padding-right: 20px;
+        cursor: pointer;
+        transition:
+          letter-spacing 0.3s ease-in-out,
+          padding 0.3s ease-in-out;
       }
-
       button:hover,
       select:hover {
-        cursor: pointer;
         letter-spacing: 2px;
+        color: var(--hover-color);
+        cursor: pointer;
       }
-
+      label {
+        color: var(--text-color);
+      }
+      select {
+        margin-left: 1%;
+        min-width: 300px;
+      }
       input[type="range"] {
         -webkit-appearance: none;
         height: 4px;
@@ -99,9 +65,9 @@
       }
       input[type="range"]::-webkit-slider-runnable-track {
         height: 4px;
-        cursor: pointer;
         background: var(--hover-color);
         border-radius: 2px;
+        cursor: pointer;
       }
       input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;

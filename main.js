@@ -4,16 +4,14 @@ let algo = params.get("algo") || "bubble";
 let showSelect = params.get("showSelect") || "true";
 const transparent = params.get("transparent") === "true";
 
-window.onload = async function() {
-  async function loadAlgorithm(name) {
-    let module = await import(`./algos/${name}/main.js`);
-    module.init();
-  }
+export async function loadAlgorithm(name) {
+  let module = await import(`./algos/${name}/main.js`);
+  module.init();
+}
 
+window.onload = async function() {
   await loadAlgorithm(algo); // ← await para que el select ya exista
 
-  const select = document.getElementById("algoSelect");
-  select.value = algo;
   select.addEventListener("change", (e) => {
     loadAlgorithm(e.target.value);
   });

@@ -1,5 +1,5 @@
-import { sort } from './algos/bubble/bubbleSort.js';
 import { state } from './state.js';
+import { loadAlgorithm } from './main.js';
 
 export const canvas = document.getElementById("algo");
 export const ctx = canvas.getContext("2d");
@@ -235,5 +235,9 @@ export function initVisualizer(sortFn, adjustFn) {
     colorButton.innerText = state.color ? "Colorize" : "Decolorize";
     state.color = !state.color;
     draw(arr);
+  });
+
+  select.addEventListener("change", (e) => {
+    loadAlgorithm(e.target.value);
   });
 }
