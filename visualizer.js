@@ -187,7 +187,7 @@ export function initVisualizer(sortFn, adjustFn) {
   controlsDiv.style.display = "flex";
   controlsDiv.style.alignItems = "center";
   controlsDiv.style.gap = "20px";
-  controlsDiv.style.marginBottom = "1%";
+  controlsDiv.style.marginBottom = "25px";
 
   sortingDiv.insertBefore(controlsDiv, canvas);
 
