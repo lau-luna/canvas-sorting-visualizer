@@ -1,5 +1,5 @@
-import { state } from '../../state.js';
-import { drawSort, sleep, exchange } from '../../visualizer.js';
+import { state } from '../state.js';
+import { drawSort, sleep, exchange } from '../visualizer.js';
 
 export const sortName = "Bubble Sort";
 
