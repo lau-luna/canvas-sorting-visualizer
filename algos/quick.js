@@ -25,19 +25,19 @@ export function adjustDelayAndSteps() {
 }
 
 export async function sort(A) {
-  await quickSort(A, 0, A.length-1);
+  await quickSort(A, 0, A.length - 1);
 }
 
 async function quickSort(A, p, r) {
   let step = 0;
   if (p < r) {
-    let i = p-1;
-    for (let j = p; j < r ; j++) {
+    let i = p - 1;
+    for (let j = p; j < r; j++) {
       if (state.cancelled) return;
       if (A[j] <= A[r]) {
         i++;
+        state.swaps++;
         exchange(A, i, j);
-        state.arrayAccesses += 4;
       }
       state.comparisons++;
       state.arrayAccesses += 2;
@@ -53,6 +53,7 @@ async function quickSort(A, p, r) {
     state.recentHighlights.clear();
     let q = i + 1;
     exchange(A, q, r);
+    state.swaps++;
     state.recentHighlights.add(q);
     state.recentHighlights.add(r);
     await quickSort(A, p, q - 1);

@@ -1,6 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 
 export const state = {
+  swaps: 0,
   comparisons: 0,
   arrayAccesses: 0,
   isSorting: false,

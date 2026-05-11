@@ -1,7 +1,7 @@
 import { state } from '../../state.js';
 import { drawSort, sleep, exchange } from '../../visualizer.js';
 
-export const sortName = "Bubble Sort";
+export const sortName = "Selection Sort";
 
 export function adjustDelayAndSteps() {
   if (state.arraySize <= 50) {
@@ -18,23 +18,25 @@ export function adjustDelayAndSteps() {
 
 export async function sort(A) {
   let step = 0;
-  for (let i = 1; i < A.length; i++) {
-    for (let j = A.length - 1; j >= i; j--) {
-      if (state.cancelled) return;
-      state.comparisons++;
-      state.arrayAccesses += 2;
-      if (A[j - 1] > A[j]) {
-        exchange(A, j - 1, j);
-        state.swaps++;
+  for (let i = 0; i < A.length - 1; i++) {
+    let min = i;
+    for (let j = i + 1; j < A.length; j++) {
+      if (state.cancelled) { return; }
+      if (A[j] < A[min]) {
+        min = j;
       }
-      state.recentHighlights.add(j - 1);
-      state.recentHighlights.add(j);
+      state.comparisons++;
       step++;
+      state.recentHighlights.add(i);
+      state.recentHighlights.add(j);
+      state.recentHighlights.add(min);
       if (step % state.stepsPerFrame === 0) {
         drawSort(A, [...state.recentHighlights]);
         state.recentHighlights.clear();
         await sleep(state.delay);
       }
     }
+    state.swaps++;
+    exchange(A, i, min);
   }
 }

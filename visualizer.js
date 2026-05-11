@@ -1,3 +1,4 @@
+import { sortName } from './algos/insertion.js';
 import { state } from './state.js';
 
 export let canvas, ctx;
@@ -54,16 +55,43 @@ export function drawFrame(A, highlight = []) {
   }
 }
 
+function calcWidth(text) {
+  return Math.floor(ctx.measureText(text).width);
+}
+
 export function template(numElements) {
+  const marginLeftPx = 10;
+
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "white";
+
   ctx.font = "32px serif";
-  ctx.fillText(state.sortName, 10, 35);
+  ctx.fillText(state.sortName, marginLeftPx, 35);
+  let sortNameWidthPx = calcWidth(state.sortName);
+
+  let text = "";
+  let lastWidthPx;
   ctx.font = "14px serif";
-  ctx.fillText("A in {1, ..., " + numElements + "}^" + state.randomRangeUpperBound, 175, 34);
-  ctx.fillText(state.comparisons + " comparisons.", 10, 60);
-  ctx.fillText(state.arrayAccesses + " array accesses.", 140, 60);
+  ctx.fillText("A in {1, ..., " + state.randomRangeUpperBound + "}^" + numElements, 10 + marginLeftPx + sortNameWidthPx, 34);
+
+  let x = 10;
+
+  text = state.comparisons + " comparisons.";
+  lastWidthPx = calcWidth(text);
+  ctx.fillText(text, x, 60);
+  x += lastWidthPx + 10;
+
+  text = state.arrayAccesses + " array accesses.";
+  lastWidthPx = calcWidth(text);
+  ctx.fillText(text, x, 60);
+  x += lastWidthPx + 10;
+
+  text = state.swaps + " swaps.";
+  lastWidthPx = calcWidth(text);
+  ctx.fillText(text, x, 60);
+  x += lastWidthPx + 10;
+
   ctx.fillText("1 frame = " + state.delay + " ms", canvas.width - 108, 35);
   ctx.fillText(state.stepsPerFrame + " steps/frame.", canvas.width - 100, 60);
 }
@@ -116,7 +144,7 @@ export async function initVisualizer(sortFn, adjustFn, onAlgoChange) {
   canvas = document.getElementById("algo");
   ctx = canvas.getContext("2d");
 
-  canvas.width = canvas.dataset.width || window.innerWidth;
+  canvas.width = canvas.dataset.width || canvas.parentElement.clientWidth;
   canvas.height = canvas.dataset.height || window.innerHeight * 0.812;
 
   state.randomRangeUpperBound = canvas.height - 100;
@@ -223,6 +251,7 @@ export async function initVisualizer(sortFn, adjustFn, onAlgoChange) {
       sortButton.innerText = "STOP";
       sizeSlider.disabled = true;
       newArrayButton.disabled = true;
+      state.swaps = 0;
       state.comparisons = 0;
       state.arrayAccesses = 0;
       await sortFn(arr);

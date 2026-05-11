@@ -1,12 +1,5 @@
-console.log("main.js cargado");
-
 import { initVisualizer } from './visualizer.js';
 import { state } from './state.js';
-
-
-
-console.log("todo importado, initVisualizer:", initVisualizer);
-console.log("state:", state);
 
 const params = new URLSearchParams(window.location.search);
 let algo = params.get("algo") || "bubble";
