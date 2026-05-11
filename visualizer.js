@@ -151,7 +151,7 @@ export function initVisualizer(sortFn, adjustFn) {
 
   form.appendChild(label);
   form.appendChild(select);
-  if (showSelect === true) {
+  if (showSelect === "true") {
     document.body.insertBefore(form, sortingDiv);
   }
 
