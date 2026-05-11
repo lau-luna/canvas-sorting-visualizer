@@ -18,6 +18,7 @@ export function adjustDelayAndSteps() {
 
 
 export async function sort(A) {
+  let step = 0
   for (let i = 1; i < A.length; i++) {
     let key = A[i];
     state.arrayAccesses += 1;
@@ -30,8 +31,8 @@ export async function sort(A) {
       j--;
       state.recentHighlights.add(j);
       state.recentHighlights.add(i);
-      state.step++;
-      if (state.step % state.stepsPerFrame === 0) {
+      step++;
+      if (step % state.stepsPerFrame === 0) {
         drawSort(A, [...state.recentHighlights]);
         state.recentHighlights.clear();
         await sleep(state.delay);
