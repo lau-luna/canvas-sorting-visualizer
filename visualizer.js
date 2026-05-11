@@ -1,18 +1,13 @@
 import { state } from './state.js';
-import { loadAlgorithm } from './main.js';
+
+export let canvas, ctx;
 
 
 
 const params = new URLSearchParams(window.location.search);
 let showSelect = params.get("showSelect") || "true";
 
-export const canvas = document.getElementById("algo");
-export const ctx = canvas.getContext("2d");
 
-canvas.width = canvas.dataset.width || window.innerWidth;
-canvas.height = canvas.dataset.height || window.innerHeight * 0.812;
-
-state.randomRangeUpperBound = canvas.height - 100;
 
 export function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -114,7 +109,18 @@ export function exchange(A, i, j) {
   state.arrayAccesses += 4;
 }
 
-export function initVisualizer(sortFn, adjustFn) {
+export async function initVisualizer(sortFn, adjustFn, onAlgoChange) {
+  const response = await fetch("./algorithms.json");
+  const algorithms = await response.json();
+
+  canvas = document.getElementById("algo");
+  ctx = canvas.getContext("2d");
+
+  canvas.width = canvas.dataset.width || window.innerWidth;
+  canvas.height = canvas.dataset.height || window.innerHeight * 0.812;
+
+  state.randomRangeUpperBound = canvas.height - 100;
+
   function makeButton(text) {
     const btn = document.createElement("button");
     btn.innerText = text;
@@ -142,10 +148,12 @@ export function initVisualizer(sortFn, adjustFn) {
   const select = document.createElement("select");
   select.id = "algoSelect";
 
-  [["bubble", "Bubble Sort"], ["merge", "Merge Sort"], ["quick", "Quick Sort"]].forEach(([value, text]) => {
+
+  // Create the form
+  algorithms.forEach((algo) => {
     const option = document.createElement("option");
-    option.value = value;
-    option.innerText = text;
+    option.value = algo.value;
+    option.innerText = algo.text;
     select.appendChild(option);
   });
 
@@ -245,6 +253,6 @@ export function initVisualizer(sortFn, adjustFn) {
   });
 
   select.addEventListener("change", (e) => {
-    loadAlgorithm(e.target.value);
+    onAlgoChange(e.target.value);
   });
 }

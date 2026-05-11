@@ -1,0 +1,22 @@
+[
+  {
+    "value": "bubble",
+    "text": "Bubble Sort",
+    "src": "bubbleSort.js"
+  },
+  {
+    "value": "insertion",
+    "text": "Insertion Sort",
+    "src": "insertionSort.js"
+  },
+  {
+    "value": "merge",
+    "text": "Merge Sort",
+    "src": "insertionSort.js"
+  },
+  {
+    "value": "quick",
+    "text": "Quick Sort",
+    "src": "insertionSort.js"
+  }
+]
